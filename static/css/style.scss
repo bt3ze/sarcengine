@@ -1,11 +1,51 @@
+@font-face
+{
+	font-family: lekton;
+	src: url(static/fonts/Lekton-Regular.ttf);
+}
+
 body {
     background: #EEEEEE;
+    font-family: Lekton-Regular, lekton, Helvetica;
+    font-size: 1.5em;
+}
+
+#wrapper {
+	margin: 15% 30px 15% 30px;
+}
+
+.search-tag {
+	padding-right: 0px;
+	margin-right: 0px;
 }
 
 #searchbox {
-	min-width: 1200px;
 	min-height: 70px;
-	padding: 30 30 30 30;
+	padding: 30px 30px 30px 0px;
+	margin-left: 0px;
 	background: #EFEFEF;
 	color: purple;
+	font-size: 1.5em;
+
+}
+
+#searchbar-outer{
+	line-height: 70px;
+}
+
+.searchbar {
+	margin-left: 0px;
+	margin-right: 0px;
+	padding-right: 2px;
+	padding-left: 2px;
+	line-height: 70px;
+}
+
+#searchbtn{
+	min-height:70px;
+	margin-top: -1px;
+}
+footer {
+	line-height: 20px;
+	font-size: 15px;
 }

@@ -2,15 +2,30 @@
 <html lang="en">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	{% block head %}
 	<title>Sarc-SearchEngine</title>
-	<link href="static/css/foundation.css">
-	<link href="static/css/style.css">
-	{% endblock %}
+	<link rel="stylesheet" href="static/css/foundation.css">
+	<link rel="stylesheet" href="static/css/style.css">
 </head>
 <body>
 	<div id="wrapper">
 		{% block content %}
+		<div class="row" id="searchbar-outer">
+			<div class="small-offset-1 small-1 columns search-tag searchbar">
+				<span>engine:</span>
+			</div>
+			<div class="small-7 columns searchbar">
+				<input type="text" name="searchbox" id="searchbox"/>
+			</div>
+			<div class="small-1 columns end searchbar">
+				<button class="button" id="searchbtn">GO</button>
+			</div>
+		</div>
 		{% endblock %}
 	</div>
+	<footer class="row">
+		Ben Terner / SARC5500 Tanzer
+	</footer>
+	<script src="static/js/vendor/jquery.js"></script>
+	<script src="static/js/vendor/fastclick.js"></script>
+	<script src="static/js/foundation.min.js"></script>
 </body>
