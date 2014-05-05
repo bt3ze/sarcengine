@@ -2,18 +2,17 @@ import os
 import sys
 import re
 import urllib2
+from bs4 import BeautifulSoup
+import unicodedata
 
-def contentfromtags(line):
-    return line[line.find(">")+1:]
+soup = BeautifulSoup(sys.stdin.read())
+paragraphs = soup.find_all('p')
 
-paragraphs = re.findall('<p>.*</p>', sys.stdin.read())
+paragraphs = map(lambda(x): x.get_text(),paragraphs)
 
-body = " ".join(paragraphs)
+body = re.sub("\s+"," "," ".join(paragraphs))
 
-cuts = re.split("<",body)
+body = unicodedata.normalize('NFKD', body).encode('ascii','ignore')
 
-text = " ".join(map(contentfromtags,cuts))
+print body
 
-
-#print paragraphs
-print text
