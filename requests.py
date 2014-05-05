@@ -26,6 +26,14 @@ try:
     urllib2.install_opener(handler)
     response = urllib2.urlopen(url)
     data = response.read()
+    try:
+        for d in data:
+            sys.stdout.write( d )
+            sys.stdout.flush()
+    except IOError as e:
+            print e
+    finally:
+        pass
 except urllib2.URLError, err:
     print(err.reason)
 finally:
@@ -34,14 +42,7 @@ finally:
     except NameError:
         pass
 
-try:
-    for d in data:
-        sys.stdout.write( d )
-        sys.stdout.flush()
-except IOError as e:
-    print e
-finally:
-    pass
+
 
 '''
 encoding = locale.getpreferredencoding()
