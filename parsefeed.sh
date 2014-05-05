@@ -5,5 +5,5 @@ while read line
 do
     echo $line
     sh ./requestandparse.sh $line
-    cat out.txt
+#    cat out.txt
 done < stories.txt
