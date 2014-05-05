@@ -2,5 +2,5 @@
 
 sh ./bashrequest.sh tmp.txt $1
 python parseparagraphs.py < tmp.txt > out.txt
-out.txt >> colossus.txt
-newline.txt >> colossus.txt
+cat out.txt >> colossus.txt
+cat newline.txt >> colossus.txt
