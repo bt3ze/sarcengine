@@ -20,7 +20,7 @@ relationcollection = db.relations
 
 #lines = sys.stdin.readlines()
 
-extract_list = ["and","the","is","are","were","be","being","been","has","have","had","do","does","did","can","may","might","must","shall","will","would","could","should","of","from","or","if","a","an","to","in","it","for","who","us","that","--","-","at","as","how","when","why","where","they","under","over","above","also","on","by","we","was","what","now","its","it\'s","","out","seem","/","like","this","that","therefore","however","she","he","i","him","her","his","hers","not","ive","with","but","which","that","said","says","say","more","less","about","up","ask","put","still","many","those","these","such","yet","new","old","before","after","so","no","than","then"]
+extract_list = ["and","the","is","are","were","be","being","been","has","have","had","do","does","did","can","may","might","must","shall","will","would","could","should","of","from","or","if","a","an","to","in","it","for","who","us","that","--","-","at","as","how","when","why","where","they","under","over","above","also","on","by","we","was","what","now","its","it\'s","","out","seem","/","like","this","that","therefore","however","she","he","i","him","her","his","hers","not","ive","with","but","which","that","said","says","say","more","less","about","up","ask","put","still","many","those","these","such","yet","new","old","before","after","so","no","than","then", "you","your","wed"]
 
 source = ""
 dictionary = {}
@@ -30,19 +30,19 @@ relations = {}
 for line in lines:
     
     if line.strip() == "":
-        print source,
-        print priority_list
-        print relations
+#        print source,
+#        print priority_list
+#        print relations
 
         try:
             word_id = wordcollection.update({"source":source},{ "$addToSet" : { "words": { "$each" : list(priority_list) }}},True)
-            print word_id
+#            print word_id
         except Exception,err:
             print "error",err
         for w in relations:
             try:
                 relation_id = relationcollection.update({"word":w},{ "$addToSet": {"relations" : { "$each": list(relations)}}},True)
-                print relation_id
+#                print relation_id
             except Exception,err:
                 print "error",err
         
@@ -64,7 +64,7 @@ for line in lines:
                 dictionary[w] = 1
                 #  print sentences
                 
-                priority_list = sorted(dictionary,key=dictionary.get,reverse=True)[:40]
+                priority_list = sorted(dictionary,key=dictionary.get,reverse=True)[:10]
                 
         relations = {}
                 

@@ -9,14 +9,21 @@
 <body>
 	<div id="wrapper">
 		{% block content %}
-		<p> nothing here </p>
+		{% for item in results %}
+		<div class="result">
+		  <p><a href="{{item.source}}" >{{ item.source }} </a><p>
+		    {% for word in item.words %}
+		    <span>{{ word }}</span>
+		    {% endfor %}
+		</div>
+		{% endfor %}
 		{% endblock %}
 	</div>
 	<footer class="row">
-		Ben Terner / SARC5500 Tanzer
+		Ben Terner
 	</footer>
-	<script src="//static/js/vendor/jquery.js"></script>
-	<script src="//static/js/vendor/fastclick.js"></script>
-	<script src="//static/js/foundation.min.js"></script>
+	<script src="/static/js/vendor/jquery.js"></script>
+	<script src="/static/js/vendor/fastclick.js"></script>
+	<script src="/static/js/foundation.min.js"></script>
 </body>
 

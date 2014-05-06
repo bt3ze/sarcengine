@@ -62,7 +62,7 @@ def queryurl(url):
     wordcollection = db.words
     relationcollection = db.relations
 
-    extract_list = ["and","the","is","are","were","be","being","been","has","have","had","do","does","did","can","may","might","must","shall","will","would","could","should","of","from","or","if","a","an","to","in","it","for","who","us","that","--","-","at","as","how","when","why","where","they","under","over","above","also","on","by","we","was","what","now","its","it\'s","","out","seem","/","like","this","that","therefore","however","she","he","i","him","her","his","hers","not","ive","with","but","which","that","said","says","say","more","less","about","up","ask","put","still","many","those","these","such","yet","new","old","before","after","so","no","than","then"]
+    extract_list = ["and","the","is","are","were","be","being","been","has","have","had","do","does","did","can","may","might","must","shall","will","would","could","should","of","from","or","if","a","an","to","in","it","for","who","us","that","--","-","at","as","how","when","why","where","they","under","over","above","also","on","by","we","was","what","now","its","it\'s","","out","seem","/","like","this","that","therefore","however","she","he","i","him","her","his","hers","not","ive","with","but","which","that","said","says","say","more","less","about","up","ask","put","still","many","those","these","such","yet","new","old","before","after","so","no","than","then", "you","your","wed"]
 
     dictionary = {}
     priority_list = {}
@@ -85,7 +85,7 @@ def queryurl(url):
             dictionary[w] = 1
 
     
-    priority_list = sorted(dictionary,key=dictionary.get,reverse=True)[:40]
+    priority_list = sorted(dictionary,key=dictionary.get,reverse=True)[:10]
         
     for sentence in sentences:
         sentence = re.sub("\.|,|\'|:|\?|\"|\(|\)","",sentence)
@@ -112,7 +112,7 @@ def queryurl(url):
 
     
     rels = []
-    for w in range(0,1):
+    for w in range(0,len(words)):
         item = words[w]
         rel = item[u'relations']
         rels.extend(rel)
@@ -123,11 +123,14 @@ def queryurl(url):
     
     #print intersects
     
+
+#    sources = map(lambda x: x.source, intersects)
+#    intersects = [a for a in intersects if a.source not in sources]
     bestmatches = sorted(intersects, key=lambda x: x['intersections'], reverse=True)
     
     #for i in range(0,10):
     #    print bestmatches[i]
-        
+
     client.close()
-    #    return json.dumps(bestmatches[0])
-    return render_template('base.html',user='me')
+  #  return json.dumps(bestmatches)
+    return render_template('results.html',results=bestmatches[:20])
