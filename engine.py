@@ -106,6 +106,31 @@ def queryurl(url):
 
                         
     # now I have all the information I need, can go ahead and query the db
+
+
+    words = list(relationcollection.find({"word": {"$in": list(dictionary)}}))
+    # might come back to this later if I want to grab all the words from the relations and not just the important ones in the article. the difference is one degree of separation
+
+    client.close()
+    return json.dumps(words)
+    '''
+    item = words[0]
+    #print item
     
+    rels = item[u'relations']
+    #print rels
+
+    intersects = list(wordcollection.find({"words": {"$in":rels}}))
+    #print intersects
+    intersects = map(lambda(x): {"source":x['source'],'words':x['words'],"intersections":len(set(rels)&set(x['words']))},intersects)
+    
+    #print intersects
+    
+    bestmatches = sorted(intersects, key=lambda x: x['intersections'], reverse=True)
+    
+    for i in range(0,10):
+        print bestmatches[i]
+        
     client.close()
     return json.dumps(relations)
+    '''
