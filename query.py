@@ -19,8 +19,11 @@ words = list(relationcollection.find({"word":"yen"}))
 
 print words
 
+rels = words.relations
+print rels
+
 matches = []
-intersects = list(wordcollection.find({"words": {"$in":words['relations']}}))
+intersects = list(wordcollection.find({"words": {"$in":rels}}))
 
 '''
 for w in words['relations']:
