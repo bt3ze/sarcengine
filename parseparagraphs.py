@@ -5,6 +5,7 @@ import urllib2
 from bs4 import BeautifulSoup
 import unicodedata
 
+
 soup = BeautifulSoup(sys.stdin.read())
 paragraphs = soup.find_all('p')
 
