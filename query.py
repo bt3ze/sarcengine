@@ -17,13 +17,24 @@ lst = ["china","money","yen"]
 
 words = list(relationcollection.find({"word":"yen"}))
 
-print words
+#print words
 
-rels = words.relations
-print rels
+item = words[0]
+#print item
 
-matches = []
+rels = item[u'relations']
+#print rels
+
 intersects = list(wordcollection.find({"words": {"$in":rels}}))
+#print intersects
+intersects = map(lambda(x): {"source":x['source'],'words':x['words'],"intersections":len(set(rels)&set(x['words']))},intersects)
+
+#print intersects
+
+bestmatches = sorted(intersects, key=lambda x: x['intersections'], reverse=True)
+
+for i in range(0,10):
+    print bestmatches[i]
 
 '''
 for w in words['relations']:
