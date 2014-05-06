@@ -85,7 +85,7 @@ def queryurl(url):
             dictionary[w] = 1
 
     
-    priority_list = sorted(dictionary,key=dictionary.get,reverse=True)[:10]
+    priority_list = sorted(dictionary,key=dictionary.get,reverse=True)[:20]
         
     for sentence in sentences:
         sentence = re.sub("\.|,|\'|:|\?|\"|\(|\)","",sentence)
@@ -107,7 +107,8 @@ def queryurl(url):
     # now I have all the information I need, can go ahead and query the db
 
 
-    words = list(relationcollection.find({"word": {"$in": list(dictionary)}}))
+
+    words = list(relationcollection.find({"word": {"$in": list(priority_list)}}))
     # might come back to this later if I want to grab all the words from the relations and not just the important ones in the article. the difference is one degree of separation
 
     
