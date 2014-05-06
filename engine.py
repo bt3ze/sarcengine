@@ -24,7 +24,7 @@ def hello():
 @app.route('/queryurl/<path:url>')
 def queryurl(url):
     print hello
-
+'''
     # go grab the external page, save it in "data"
     try:
         handler = urllib2.build_opener(urllib2.HTTPCookieProcessor)
@@ -101,3 +101,4 @@ def queryurl(url):
     # now I have all the information I need, can go ahead and query the db
     
     
+'''
