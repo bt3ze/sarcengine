@@ -129,5 +129,5 @@ def queryurl(url):
     #    print bestmatches[i]
         
     client.close()
-    return json.dumps(bestmatches[0])
-    
+    #    return json.dumps(bestmatches[0])
+    return render_template('base.html',user='me')
