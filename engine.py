@@ -77,8 +77,7 @@ def queryurl(url):
     wordlist = words.split(" ")
     
     wordlist = [ w for w in wordlist if w not in extract_list]
-    
-    
+        
     for w in wordlist:
         if w in dictionary:
             dictionary[w] = dictionary[w] + 1
@@ -111,14 +110,12 @@ def queryurl(url):
     words = list(relationcollection.find({"word": {"$in": list(dictionary)}}))
     # might come back to this later if I want to grab all the words from the relations and not just the important ones in the article. the difference is one degree of separation
 
-    client.close()
-    return json.dumps(words)
-    '''
-    item = words[0]
-    #print item
     
-    rels = item[u'relations']
-    #print rels
+    rels = []
+    for w in range(0,1):
+        item = words[w]
+        rel = item[u'relations']
+        rels.extend(rel)
 
     intersects = list(wordcollection.find({"words": {"$in":rels}}))
     #print intersects
@@ -128,9 +125,9 @@ def queryurl(url):
     
     bestmatches = sorted(intersects, key=lambda x: x['intersections'], reverse=True)
     
-    for i in range(0,10):
-        print bestmatches[i]
+    #for i in range(0,10):
+    #    print bestmatches[i]
         
     client.close()
-    return json.dumps(relations)
-    '''
+    return json.dumps(bestmatches[0])
+    
