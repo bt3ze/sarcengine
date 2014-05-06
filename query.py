@@ -14,7 +14,7 @@ db = client.engine
 wordcollection = db.words
 relationcollection = db.relations
 
-words = list(wordcollection.find({}))
+words = list(articlecollection.find({}))
 
 #print words
 

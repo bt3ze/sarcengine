@@ -35,13 +35,13 @@ for line in lines:
         print relations
 
         try:
-            word_id = wordcollection.insert({"source":source,"words":priority_list})
+            word_id = wordcollection.update({"source":source},{ "$addToSet" : { "words": { "$each" : list(priority_list) }}},True)
             print word_id
         except Exception,err:
             print "error",err
         for w in relations:
             try:
-                relation_id = relationcollection.insert({"word":w,"relations":relations[w]})
+                relation_id = relationcollection.update({"word":w},{ "$addToSet": {"relations" : { "$each": list(relations)}}},True)
                 print relation_id
             except Exception,err:
                 print "error",err
