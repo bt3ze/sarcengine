@@ -15,15 +15,17 @@ wordcollection = db.words
 relationcollection = db.relations
 lst = ["china","money","yen"]
 
-words = list(relationcollection.find({"word":lst}))
+words = list(relationcollection.find({"word":"yen"})
 
 print words
 
 matches = []
-for w in words:
+intersects = list(wordcollection.find({"words": {"$in":words}}))
+'''
+for w in words['relations']:
     intersects = list(wordcollection.find({"words": {"$in": words}}))
     print intersects
-
+'''
 
 '''
 for wlist in words:
